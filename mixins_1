@@ -1,0 +1,181 @@
+// Border Mixins
+@mixin border($color, $width) {
+    border: #{$width} solid #{$color};
+}
+
+// Absolute Position mixins
+@mixin cover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+@mixin top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@mixin top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+@mixin bottom-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+@mixin bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+// Mixin to set svg image
+@mixin svg-image-full-path-before($base-path, $image-name, $extension: 'svg', $width: 100%, $height: 100%) {
+    &::before {
+       content: url(#{$base-path}/#{$image-name}.#{$extension});
+       width: $width;
+       height: $height;
+       display: block;
+    }
+}
+// Mixin to set position
+@mixin position($position) {
+    position: #{$position};
+}
+
+@mixin box-sizing($val: border-box) {
+    box-sizing: $val;
+    -webkit-box-sizing: $val;
+    -moz-box-sizing: $val;
+    -ms-box-sizing: $val;
+    -o-box-sizing: $val;
+ }
+
+ @mixin translate($valX, $valY) {
+    transform: translate($valX, $valY);
+    -webkit-transform: translate($valX, $valY);
+    -moz-transform: translate($valX, $valY);
+    -ms-transform: translate($valX, $valY);
+    -o-transform: translate($valX, $valY);
+ }
+@mixin common-button-hover {
+    background-color: $grey-500;
+}
+
+@mixin common-button {
+    background-color: $white;
+    color: $blue-200;
+    box-shadow: unset;
+    font-size: 14px;
+    height: 42px;
+    &:hover {
+        @include common-button-hover();
+    }
+}
+
+@mixin common-button-outline {
+    @include common-button();
+    outline: $blue-200 solid 1px;
+}
+
+@mixin common-button-stroked {
+    @include common-button();
+    border: $blue-200 solid 1px;
+}
+
+@mixin common-button-small {
+    line-height: 24px;
+    padding: 0px 12px;
+    height: 34px!important;
+}
+    
+@mixin animatedProgressBar {
+    animation: progressBar 0.5s ease-in-out;
+    animation-fill-mode: both;
+    @include pollTypography(14, 500, 1.714);
+}
+
+@mixin pollTypography($font-size, $font-weight, $line-height) {
+    font-size: #{$font-size}px;
+    font-weight: #{$font-weight};
+    line-height: #{$line-height};
+}
+
+@mixin minWidth($min-width) {
+    min-width: #{$min-width}px;    
+}
+
+@mixin maxWidth($max-width) {
+    max-width: #{$max-width}px;    
+}
+
+@mixin minHeight($min-height) {
+    min-height: #{$min-height}px;    
+}
+
+@mixin maxHeight($max-height) {
+    max-height: #{$max-height}px;    
+}
+
+@mixin common-input($border-color, $border-color-focus, $background-hover, $border-invalid, $padding-left: 16px, $input-font-size: 12px) {
+    &.mat-form-field-appearance-outline {
+        .mat-form-field-outline-start,
+        .mat-form-field-outline-end {
+            border-color: $border-color;
+        }
+    }
+
+    &.mat-form-field-appearance-outline.mat-focused {
+        .mat-form-field-outline-start,
+        .mat-form-field-outline-end {
+            border-color: $border-color-focus;
+        }
+        .mat-form-field-outline {
+            opacity: unset !important;
+            transition: unset !important;
+            background-color: $white !important;
+        }
+        .mat-form-field-outline-thick {
+            opacity: 0 !important;
+        }
+    }
+
+    // Apply background on hover if field is empty
+    &.mat-form-field-appearance-outline,
+    &.mat-form-field-appearance-outline.mat-form-field-can-float {
+        .mat-form-field-flex:hover {
+            .mat-form-field-outline {
+                background-color: $background-hover;
+            }
+        }
+    }
+
+    &.mat-form-field-appearance-outline.mat-form-field-invalid.ng-touched, &.mat-form-field-appearance-outline.ng-dirty.ng-invalid {
+        .mat-form-field-outline-start,
+        .mat-form-field-outline-end {
+            border-color: $border-invalid;
+        }
+        .mat-form-field-outline {
+            opacity: unset !important;
+            transition: unset !important;
+        }
+        .mat-form-field-outline-thick {
+            opacity: 0 !important;
+        }
+    }
+    .mat-form-field-infix {
+        border-top: 4px solid transparent;
+        padding: 13px 0 13px $padding-left;
+        font-size: $input-font-size;        
+    }
+}
+
+@mixin heightInPx($height) {
+    height: #{$height}px !important;    
+}
